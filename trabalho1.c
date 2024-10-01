@@ -222,3 +222,27 @@ void depositar(Usuario *usuario) {
         printf("Quantidade inválida!\n");
     }
 }
+// Função para verificar a senha antes de permitir o saque do usuário
+int verificar_senha(Usuario *usuario) {
+    int senha = input1("Digite sua senha para sacar: ");
+    return (senha == usuario->senha);
+}
+
+// Função para sacar da conta
+void sacar(Usuario *usuario) {
+    if (!verificar_senha(usuario)) {
+        printf("Senha incorreta. Saque não permitido.\n");
+        return;
+    }
+
+    double quantia = input2("Digite a quantidade do saque: ");
+    if (quantia <= usuario->saldo) {
+        usuario->saldo -= quantia;
+        char transacao[100];
+        snprintf(transacao, 100, "- %.2f REAL\n", quantia);
+        strcpy(usuario->extrato[usuario->transacao_atual++], transacao);
+        printf("Saque realizado com sucesso!\nSeu novo saldo é: %.2f\n", usuario->saldo);
+    } else {
+        printf("Saldo insuficiente.\n");
+    }
+}
