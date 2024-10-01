@@ -174,3 +174,11 @@ Usuario *login_usuario() {
     printf("\nLogin realizado com sucesso, bem-vindo %s!\n", usuario->nome);
     return usuario;
 }
+void consultar_saldo(Usuario *usuario) {
+    printf("\nNome: %s\n", usuario->nome);
+    printf("CPF: %s\n", usuario->cpf);
+    printf("Reais: %.2f\n", usuario->saldo);
+    printf("Bitcoin: %.2f\n", usuario->valor_btc);
+    printf("Ethereum: %.2f\n", usuario->valor_eth);
+    printf("Ripple: %.2f\n", usuario->valor_rip);
+}
