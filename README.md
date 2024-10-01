@@ -6,6 +6,9 @@ SISTEMA DE CRIPTOMOEDAS EM C
 4) Para utilizar o programa, você deve criar um usuário com cpf, senha e nome. Após logar em seu usuário, você terá acesso a todas as funções disponíveis do sistema, como depósitos e saques, consulta de saldo e extrato, compra e venda de bitcoins, e também é possível realizar a atualização da cotação das moedas para novas simulações!
 
 MEMBROS DO GRUPO:
--Andre Marques, RA-521240010
--Davi Cassiano, RA-521240085
--Lucas Saletti, RA-521240051
+
+-Andre Marques, RA-521240010.
+
+-Davi Cassiano, RA-521240085.
+
+-Lucas Saletti, RA-521240051.
