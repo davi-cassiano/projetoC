@@ -39,3 +39,7 @@ int main() {
     return 0;
 }
 
+// Cotação bitcoins (globais)
+double cot_bitcoin = 322.865;
+double cot_eth = 15.524;
+double cot_rip = 2.67;
