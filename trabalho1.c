@@ -29,3 +29,26 @@ int main() {
 
     return 0;
 }
+
+typedef struct {
+    char nome[50];
+    char cpf[12];
+    int senha;
+    double saldo;
+    double criptos[MAX_CRYPTOS];
+    char extrato[MAX_TRANSACOES][100];
+    int transacao_atual;
+} Investidor;
+
+typedef struct {
+    char nome[50];
+    double cotacao;
+    double taxa_compra;
+    double taxa_venda;
+} Criptomoeda;
+
+// Dados globais
+Investidor investidores[MAX_INVESTIDORES];
+int num_investidores = 0;
+Criptomoeda criptomoedas[MAX_CRYPTOS];
+int num_criptomoedas = 0;
