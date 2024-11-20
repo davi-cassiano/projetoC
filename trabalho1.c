@@ -11,33 +11,47 @@
 #define MAX_CRYPTOS 10
 #define MAX_TRANSACOES 100
 
-int main() {
-    carregar_dados();
+typedef struct {
+    char nome[50];
     char cpf[12];
     int senha;
+    double saldo;
+    double criptos[MAX_CRYPTOS];
+    char extrato[MAX_TRANSACOES][100];
+    int transacao_atual;
+} Investidor;
 
-    printf("=== LOGIN ADMINISTRADOR ===\n");
-    input3("CPF: ", cpf);
-    senha = input1("Senha: ");
+typedef struct {
+    char nome[50];
+    double cotacao;
+    double taxa_compra;
+    double taxa_venda;
+} Criptomoeda;
 
-    if (strcmp(cpf, "12345678910") == 0 && senha == 1234) {
-        printf("Login bem-sucedido.\n");
-        menu_administrador();
-    } else {
-        printf("Login falhou.\n");
-    }
+// Dados globais
+Investidor investidores[MAX_INVESTIDORES];
+int num_investidores = 0;
+Criptomoeda criptomoedas[MAX_CRYPTOS];
+int num_criptomoedas = 0;
 
-    return 0;
+// Funções auxiliares para entrada
+int input1(const char *prompt) {
+    int input;
+    printf("%s", prompt);
+    scanf("%d", &input);
+    return input;
 }
 
-// Buscar investidor
-Investidor *buscar_investidor(const char *cpf) {
-    for (int i = 0; i < num_investidores; i++) {
-        if (strcmp(investidores[i].cpf, cpf) == 0) {
-            return &investidores[i];
-        }
-    }
-    return NULL;
+double input2(const char *prompt) {
+    double input;
+    printf("%s", prompt);
+    scanf("%lf", &input);
+    return input;
+}
+
+void input3(const char *prompt, char *input) {
+    printf("%s", prompt);
+    scanf("%s", input);
 }
 
 // Funções de arquivo
@@ -59,3 +73,12 @@ void salvar_dados() {
     }
 }
 
+// Buscar investidor
+Investidor *buscar_investidor(const char *cpf) {
+    for (int i = 0; i < num_investidores; i++) {
+        if (strcmp(investidores[i].cpf, cpf) == 0) {
+            return &investidores[i];
+        }
+    }
+    return NULL;
+}
