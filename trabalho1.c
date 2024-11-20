@@ -11,6 +11,25 @@
 #define MAX_CRYPTOS 10
 #define MAX_TRANSACOES 100
 
+int main() {
+    carregar_dados();
+    char cpf[12];
+    int senha;
+
+    printf("=== LOGIN ADMINISTRADOR ===\n");
+    input3("CPF: ", cpf);
+    senha = input1("Senha: ");
+
+    if (strcmp(cpf, "12345678910") == 0 && senha == 1234) {
+        printf("Login bem-sucedido.\n");
+        menu_administrador();
+    } else {
+        printf("Login falhou.\n");
+    }
+
+    return 0;
+}
+
 typedef struct {
     char nome[50];
     char cpf[12];
