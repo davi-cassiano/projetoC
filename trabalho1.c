@@ -30,6 +30,49 @@ int main() {
     return 0;
 }
 
+typedef struct {
+    char nome[50];
+    char cpf[12];
+    int senha;
+    double saldo;
+    double criptos[MAX_CRYPTOS];
+    char extrato[MAX_TRANSACOES][100];
+    int transacao_atual;
+} Investidor;
+
+typedef struct {
+    char nome[50];
+    double cotacao;
+    double taxa_compra;
+    double taxa_venda;
+} Criptomoeda;
+
+// Dados globais
+Investidor investidores[MAX_INVESTIDORES];
+int num_investidores = 0;
+Criptomoeda criptomoedas[MAX_CRYPTOS];
+int num_criptomoedas = 0;
+
+// Funções auxiliares para entrada
+int input1(const char *prompt) {
+    int input;
+    printf("%s", prompt);
+    scanf("%d", &input);
+    return input;
+}
+
+double input2(const char *prompt) {
+    double input;
+    printf("%s", prompt);
+    scanf("%lf", &input);
+    return input;
+}
+
+void input3(const char *prompt, char *input) {
+    printf("%s", prompt);
+    scanf("%s", input);
+}
+
 // Funções de arquivo
 void carregar_dados() {
     FILE *file = fopen("dados.bin", "rb");
@@ -48,3 +91,4 @@ void salvar_dados() {
         fclose(file);
     }
 }
+
