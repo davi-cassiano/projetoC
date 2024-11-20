@@ -29,3 +29,23 @@ int main() {
 
     return 0;
 }
+
+// Funções auxiliares para entrada
+int input1(const char *prompt) {
+    int input;
+    printf("%s", prompt);
+    scanf("%d", &input);
+    return input;
+}
+
+double input2(const char *prompt) {
+    double input;
+    printf("%s", prompt);
+    scanf("%lf", &input);
+    return input;
+}
+
+void input3(const char *prompt, char *input) {
+    printf("%s", prompt);
+    scanf("%s", input);
+}
