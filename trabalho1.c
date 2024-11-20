@@ -11,25 +11,6 @@
 #define MAX_CRYPTOS 10
 #define MAX_TRANSACOES 100
 
-int main() {
-    carregar_dados();
-    char cpf[12];
-    int senha;
-
-    printf("=== LOGIN ADMINISTRADOR ===\n");
-    input3("CPF: ", cpf);
-    senha = input1("Senha: ");
-
-    if (strcmp(cpf, "12345678910") == 0 && senha == 1234) {
-        printf("Login bem-sucedido.\n");
-        menu_administrador();
-    } else {
-        printf("Login falhou.\n");
-    }
-
-    return 0;
-}
-
 typedef struct {
     char nome[50];
     char cpf[12];
@@ -54,28 +35,28 @@ Criptomoeda criptomoedas[MAX_CRYPTOS];
 int num_criptomoedas = 0;
 
 // Funções auxiliares para entrada
-int input1(const char prompt) {
+int input1(const char *prompt) {
     int input;
     printf("%s", prompt);
     scanf("%d", &input);
     return input;
 }
 
-double input2(const charprompt) {
+double input2(const char *prompt) {
     double input;
     printf("%s", prompt);
     scanf("%lf", &input);
     return input;
 }
 
-void input3(const char prompt, charinput) {
+void input3(const char *prompt, char *input) {
     printf("%s", prompt);
     scanf("%s", input);
 }
 
 // Funções de arquivo
 void carregar_dados() {
-    FILE file = fopen("dados.bin", "rb");
+    FILE *file = fopen("dados.bin", "rb");
     if (file) {
         fread(&investidores, sizeof(Investidor), MAX_INVESTIDORES, file);
         fread(&criptomoedas, sizeof(Criptomoeda), MAX_CRYPTOS, file);
@@ -84,7 +65,7 @@ void carregar_dados() {
 }
 
 void salvar_dados() {
-    FILEfile = fopen("dados.bin", "wb");
+    FILE *file = fopen("dados.bin", "wb");
     if (file) {
         fwrite(&investidores, sizeof(Investidor), MAX_INVESTIDORES, file);
         fwrite(&criptomoedas, sizeof(Criptomoeda), MAX_CRYPTOS, file);
@@ -93,7 +74,7 @@ void salvar_dados() {
 }
 
 // Buscar investidor
-Investidor buscar_investidor(const charcpf) {
+Investidor *buscar_investidor(const char *cpf) {
     for (int i = 0; i < num_investidores; i++) {
         if (strcmp(investidores[i].cpf, cpf) == 0) {
             return &investidores[i];
@@ -277,4 +258,23 @@ void menu_administrador() {
                 printf("Opção inválida.\n");
         }
     }
+}
+
+int main() {
+    carregar_dados();
+    char cpf[12];
+    int senha;
+
+    printf("=== LOGIN ADMINISTRADOR ===\n");
+    input3("CPF: ", cpf);
+    senha = input1("Senha: ");
+
+    if (strcmp(cpf, "12345678910") == 0 && senha == 1234) {
+        printf("Login bem-sucedido.\n");
+        menu_administrador();
+    } else {
+        printf("Login falhou.\n");
+    }
+
+    return 0;
 }
